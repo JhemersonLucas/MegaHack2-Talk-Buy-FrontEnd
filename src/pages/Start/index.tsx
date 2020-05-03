@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import RecordRTC from 'recordrtc';
-import * as speech from '@google-cloud/speech';
-import fs from 'fs';
+import { useHistory } from 'react-router-dom';
 
-import Header from '../../components/Header';
-import * as S from './styles';
-import MicrophoneButton from '../../components/MicrophoneButton';
 import api from '../../services/api';
+
+import MicrophoneButton from '../../components/MicrophoneButton';
+import * as S from './styles';
 
 const Start: React.FC = () => {
   const [recorder, setRecorder] = useState(Object);
   const [isRecording, setRecording] = useState(false);
+  const [search, setSearch] = useState('');
+  const history = useHistory();
 
   const startRecord = async (): Promise<void> => {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -28,22 +29,14 @@ const Start: React.FC = () => {
     setRecording(true);
   };
 
-  const handleRecognize = async (buffer: string): Promise<void> => {
-    console.log('retorno', buffer);
-    const response = await api.post('chatbot', { data: buffer });
-    console.log(response);
-  };
-
   const stopRecord = (): void => {
     recorder.stopRecording(async () => {
-      console.log(recorder);
-
-      const data = new FormData();
-      data.append('file', recorder.getBlob());
-
-      const res = await api.post('/chatbot', data);
-      console.log(res.data);
-      // handleRecognize(recorder.buffer);
+      const formData = new FormData();
+      formData.append('file', recorder.getBlob());
+      const { data } = await api.post('/chatbot', formData);
+      const speech = data.results[0].alternatives[0].transcript;
+      setSearch(speech);
+      history.push({ pathname: '/results', search: `?speech=${speech}` });
       setRecording(false);
     });
   };
@@ -58,16 +51,18 @@ const Start: React.FC = () => {
 
   return (
     <>
-      <S.Container>
-        <Header />
-        <S.Content>
-          <S.TitleContainer>
-            Bem vindo a nova experiência em compras online.
-          </S.TitleContainer>
-          <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
-          <MicrophoneButton onClick={() => handleRecord()} />
-        </S.Content>
-      </S.Container>
+      <S.TitleContainer>
+        Bem vindo a nova experiência em compras online.
+      </S.TitleContainer>
+      <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
+      <MicrophoneButton onClick={() => handleRecord()} />
+      {search ? (
+        <S.SearchContainer>
+          {'Buscando por: '}
+          {search}
+          ...
+        </S.SearchContainer>
+      ) : null}
     </>
   );
 };
