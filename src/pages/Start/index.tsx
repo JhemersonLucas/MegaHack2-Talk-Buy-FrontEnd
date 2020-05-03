@@ -4,6 +4,7 @@ import { findByItemName } from '../../services/products';
 
 import * as S from './styles';
 import MicrophoneButton from '../../components/MicrophoneButton';
+import api from '../../services/api';
 
 const Start: React.FC = () => {
   const [recorder, setRecorder] = useState(Object);
@@ -18,27 +19,31 @@ const Start: React.FC = () => {
       type: 'audio',
       mimeType: 'audio/wav',
       recorderType: RecordRTC.StereoAudioRecorder,
+      numberOfAudioChannels: 1,
     });
     tempRecorder.startRecording();
     setRecorder(tempRecorder);
     setRecording(true);
   };
 
-  const findByWords = (): void => {
-    findByItemName('TV');
+  const handleRecognize = async (buffer: string): Promise<void> => {
+    console.log('retorno', buffer);
+    const response = await api.post('chatbot', { data: buffer });
+    console.log(response);
   };
 
   const stopRecord = (): void => {
-    recorder.stopRecording(() => {
+    recorder.stopRecording(async () => {
       console.log(recorder);
-      const reader = new window.FileReader();
-      reader.readAsDataURL(recorder.getBlob());
-      reader.onloadend = function () {
-        // console.log(reader.result); // ENVIAR ESSE RESULT PARA API
-      };
+
+      const data = new FormData();
+      data.append('file', recorder.getBlob());
+
+      const res = await api.post('/chatbot', data);
+      console.log(res.data);
       // handleRecognize(recorder.buffer);
       setRecording(false);
-      findByWords();
+      findByItemName();
     });
   };
 
