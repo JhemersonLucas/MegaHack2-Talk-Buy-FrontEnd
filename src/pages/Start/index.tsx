@@ -41,9 +41,8 @@ const Start: React.FC = () => {
 
   const stopRecord = (): void => {
     recorder.stopRecording();
-    recorder.destroy();
+    console.log(recorder);
     handleRecognize(recorder.buffer);
-    setRecorder(null);
     setRecording(false);
   };
 
