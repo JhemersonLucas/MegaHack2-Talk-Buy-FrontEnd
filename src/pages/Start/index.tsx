@@ -40,10 +40,16 @@ const Start: React.FC = () => {
   };
 
   const stopRecord = (): void => {
-    recorder.stopRecording();
-    console.log(recorder);
-    // handleRecognize(recorder.buffer);
-    setRecording(false);
+    recorder.stopRecording(() => {
+      console.log(recorder);
+      const reader = new window.FileReader();
+      reader.readAsDataURL(recorder.getBlob());
+      reader.onloadend = function () {
+        console.log(reader.result); // ENVIAR ESSE RESULT PARA API
+      };
+      // handleRecognize(recorder.buffer);
+      setRecording(false);
+    });
   };
 
   const handleRecord = (): void => {
