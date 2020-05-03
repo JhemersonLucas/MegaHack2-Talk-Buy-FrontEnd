@@ -43,7 +43,6 @@ const Start: React.FC = () => {
       console.log(res.data);
       // handleRecognize(recorder.buffer);
       setRecording(false);
-      findByItemName();
     });
   };
 
