@@ -4,6 +4,7 @@ import * as speech from '@google-cloud/speech';
 
 import * as S from './styles';
 import MicrophoneButton from '../../components/MicrophoneButton';
+import api from '../../services/api';
 
 const Start: React.FC = () => {
   const [recorder, setRecorder] = useState(Object);
@@ -25,22 +26,13 @@ const Start: React.FC = () => {
   };
 
   const handleRecognize = async (buffer: string): Promise<void> => {
-    const client = new speech.SpeechClient({
-      projectId: 'silver-device-276105',
-      keyFilename: './google.json',
-    });
-    await client.recognize({
-      audio: {
-        content: buffer,
-      },
-      config: {
-        languageCode: 'pt-BR',
-      },
-    });
+    const response = await api.post('chatbot', { data: buffer });
+    console.log(response);
   };
 
   const stopRecord = (): void => {
     recorder.stopRecording();
+    console.log(recorder);
     recorder.destroy();
     handleRecognize(recorder.buffer);
     setRecorder(null);
