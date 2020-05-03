@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FaMicrophone } from 'react-icons/fa';
 
 export const Border = styled.div`
-  border-radius: 200px;
+  border-radius: 10px;
   margin: 20px auto;
   width: 150px;
   height: 150px;
@@ -18,10 +18,12 @@ export const Border = styled.div`
 
 export const Container = styled.div`
   background: #fff;
-  border-radius: 150px;
-  margin: 40px auto;
-  width: 180px;
-  height: 180px;
+  border-radius: 50%;
+  margin: 0px auto;
+  width: 20vw;
+  max-width: 130px;
+  height: 20vw;
+  max-height: 130px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -37,4 +39,6 @@ export const Button = styled.button`
   border: 0;
   padding: 0;
   background-color: transparent;
+  border-radius: 50%;
+  margin-top: 40px;
 `;

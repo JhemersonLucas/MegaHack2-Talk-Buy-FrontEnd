@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RecordRTC from 'recordrtc';
 import { findByItemName } from '../../services/products';
 
+import Header from '../../components/Header';
 import * as S from './styles';
 import MicrophoneButton from '../../components/MicrophoneButton';
 import api from '../../services/api';
@@ -55,13 +56,18 @@ const Start: React.FC = () => {
   };
 
   return (
-    <S.Container>
-      <S.TitleContainer>
-        Bem vindo a nova experiência em compras online.
-      </S.TitleContainer>
-      <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
-      <MicrophoneButton onClick={() => handleRecord()} />
-    </S.Container>
+    <>
+      <S.Container>
+        <Header />
+        <S.Content>
+          <S.TitleContainer>
+            Bem vindo a nova experiência em compras online.
+          </S.TitleContainer>
+          <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
+          <MicrophoneButton onClick={() => handleRecord()} />
+        </S.Content>
+      </S.Container>
+    </>
   );
 };
 
