@@ -1,9 +1,10 @@
 [
   {
     "nome": "TV",
-    "opcoes": [
+    "produtos": [
       {
         "modelo": "XBR-65A9G",
+        "marca": "Sony",
         "caracteristicas": [
           "Smart",
           "HDR",
@@ -16,6 +17,7 @@
       },
       {
         "modelo": "KDL-50W665F",
+        "marca": "Sony",
         "caracteristicas": ["LED", "Full HD", "HDR", "Smart"],
         "link": "https://store.sony.com.br/kdl-50w665f/p"
       }
@@ -23,25 +25,18 @@
   },
   {
     "nome": "Fone de ouvido",
-    "opcoes": [
+    "produtos": [
       {
         "modelo": "WH-XB900N",
+        "marca": "Sony",
         "caracteristicas": ["Cancelamento de ruido", "Sem fio", "Azul"],
         "link": "https://store.sony.com.br/wh-xb900n/p"
       },
       {
         "modelo": "WI-SP500",
+        "marca": "Sony",
         "caracteristicas": ["Esportivo", "intra auricular"],
         "link": "https://store.sony.com.br/wi-sp500/p"
-      }
-    ]
-  },
-  {
-    "nome": "Camera",
-    "opcoes": [
-      {
-        "modelo": "WH-XB900N",
-        "caracteristicas": ["Cancelamento de ruido", "Sem fio", "Azul"]
       }
     ]
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RecordRTC from 'recordrtc';
-import * as speech from '@google-cloud/speech';
+import { findByItemName } from '../../services/products';
 
 import * as S from './styles';
 import MicrophoneButton from '../../components/MicrophoneButton';
@@ -24,19 +24,8 @@ const Start: React.FC = () => {
     setRecording(true);
   };
 
-  const handleRecognize = async (buffer: string): Promise<void> => {
-    const client = new speech.SpeechClient({
-      projectId: 'silver-device-276105',
-      keyFilename: './google.json',
-    });
-    await client.recognize({
-      audio: {
-        content: buffer,
-      },
-      config: {
-        languageCode: 'pt-BR',
-      },
-    });
+  const findByWords = (): void => {
+    findByItemName('TV');
   };
 
   const stopRecord = (): void => {
@@ -45,10 +34,11 @@ const Start: React.FC = () => {
       const reader = new window.FileReader();
       reader.readAsDataURL(recorder.getBlob());
       reader.onloadend = function () {
-        console.log(reader.result); // ENVIAR ESSE RESULT PARA API
+        // console.log(reader.result); // ENVIAR ESSE RESULT PARA API
       };
       // handleRecognize(recorder.buffer);
       setRecording(false);
+      findByWords();
     });
   };
 
