@@ -20,17 +20,9 @@ const Start: React.FC = () => {
       type: 'audio',
       mimeType: 'audio/wav',
       recorderType: RecordRTC.StereoAudioRecorder,
+      numberOfAudioChannels: 1,
     });
     tempRecorder.startRecording();
-    setTimeout(() => {
-      tempRecorder.stopRecording();
-      const reader = new FileReader();
-      reader.readAsDataURL(tempRecorder.getBlob());
-      reader.onloadend = () => {
-        const audioBase64 = reader.result;
-        console.log(audioBase64);
-      };
-    }, 2000);
     setRecorder(tempRecorder);
     setRecording(true);
   };
@@ -41,16 +33,18 @@ const Start: React.FC = () => {
     console.log(response);
   };
 
-  const stopRecord = async (): Promise<void> => {
-    await recorder.stopRecording();
-    const reader = new FileReader();
-    reader.readAsDataURL(recorder.getBlob());
-    reader.onloadend = () => {
-      const audioBase64 = reader.result;
-      console.log(audioBase64);
-    };
-    // handleRecognize(recorder.buffer);
-    setRecording(false);
+  const stopRecord = (): void => {
+    recorder.stopRecording(async () => {
+      console.log(recorder);
+
+      const data = new FormData();
+      data.append('file', recorder.getBlob());
+
+      const res = await api.post('/chatbot', data);
+      console.log(res.data);
+      // handleRecognize(recorder.buffer);
+      setRecording(false);
+    });
   };
 
   const handleRecord = (): void => {

@@ -1,12 +1,48 @@
 [
   {
-    "nome": "Smart TV",
-    "modelo": "XBR-65A9G",
-    "caracteristicas": ["HDR", "Android TV", "65 polegadas", "4K", "UHD"]
+    "nome": "TV",
+    "opcoes": [
+      {
+        "modelo": "XBR-65A9G",
+        "caracteristicas": [
+          "Smart",
+          "HDR",
+          "Android TV",
+          "65 polegadas",
+          "4K",
+          "UHD"
+        ],
+        "link": "https://store.sony.com.br/xbr-65a9g/p"
+      },
+      {
+        "modelo": "KDL-50W665F",
+        "caracteristicas": ["LED", "Full HD", "HDR", "Smart"],
+        "link": "https://store.sony.com.br/kdl-50w665f/p"
+      }
+    ]
   },
   {
-    "nome": "Headphone",
-    "modelo": "WH-XB900N",
-    "caracteristicas": ["Cancelamento de ruído", "Sem fio", "Azul"]
+    "nome": "Fone de ouvido",
+    "opcoes": [
+      {
+        "modelo": "WH-XB900N",
+        "caracteristicas": ["Cancelamento de ruido", "Sem fio", "Azul"],
+        "link": "https://store.sony.com.br/wh-xb900n/p"
+      },
+      {
+        "modelo": "WI-SP500",
+        "caracteristicas": ["Esportivo", "intra auricular"],
+        "link": "https://store.sony.com.br/wi-sp500/p"
+      }
+    ]
+  },
+  {
+    "nome": "Camera",
+    "opcoes": [
+      {
+        "modelo": "WH-XB900N",
+        "caracteristicas": ["Cancelamento de ruido", "Sem fio", "Azul"]
+      }
+    ]
   }
 ]
