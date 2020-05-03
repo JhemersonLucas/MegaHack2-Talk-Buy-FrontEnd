@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RecordRTC from 'recordrtc';
 import * as speech from '@google-cloud/speech';
+import fs from 'fs';
 
 import * as S from './styles';
 import MicrophoneButton from '../../components/MicrophoneButton';
@@ -21,21 +22,34 @@ const Start: React.FC = () => {
       recorderType: RecordRTC.StereoAudioRecorder,
     });
     tempRecorder.startRecording();
+    setTimeout(() => {
+      tempRecorder.stopRecording();
+      const reader = new FileReader();
+      reader.readAsDataURL(tempRecorder.getBlob());
+      reader.onloadend = () => {
+        const audioBase64 = reader.result;
+        console.log(audioBase64);
+      };
+    }, 2000);
     setRecorder(tempRecorder);
     setRecording(true);
   };
 
   const handleRecognize = async (buffer: string): Promise<void> => {
+    console.log('retorno', buffer);
     const response = await api.post('chatbot', { data: buffer });
     console.log(response);
   };
 
-  const stopRecord = (): void => {
-    recorder.stopRecording();
-    console.log(recorder);
-    recorder.destroy();
-    handleRecognize(recorder.buffer);
-    setRecorder(null);
+  const stopRecord = async (): Promise<void> => {
+    await recorder.stopRecording();
+    const reader = new FileReader();
+    reader.readAsDataURL(recorder.getBlob());
+    reader.onloadend = () => {
+      const audioBase64 = reader.result;
+      console.log(audioBase64);
+    };
+    // handleRecognize(recorder.buffer);
     setRecording(false);
   };
 

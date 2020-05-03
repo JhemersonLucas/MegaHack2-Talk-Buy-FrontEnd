@@ -1,0 +1,12 @@
+[
+  {
+    "nome": "Smart TV",
+    "modelo": "XBR-65A9G",
+    "caracteristicas": ["HDR", "Android TV", "65 polegadas", "4K", "UHD"]
+  },
+  {
+    "nome": "Headphone",
+    "modelo": "WH-XB900N",
+    "caracteristicas": ["Cancelamento de ruído", "Sem fio", "Azul"]
+  }
+]
