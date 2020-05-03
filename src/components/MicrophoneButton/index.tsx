@@ -2,11 +2,17 @@ import React from 'react';
 
 import * as S from './styles';
 
-const MicrophoneButton: React.FC = () => {
+interface Props {
+  onClick: Function;
+}
+
+const MicrophoneButton: React.FC<Props> = props => {
   return (
-    <S.Container>
-      <S.Icon />
-    </S.Container>
+    <S.Button onClick={() => props.onClick()}>
+      <S.Container>
+        <S.Icon />
+      </S.Container>
+    </S.Button>
   );
 };
 

@@ -32,3 +32,9 @@ export const Icon = styled(FaMicrophone)`
   color: #ff4001;
   font-size: 30px;
 `;
+
+export const Button = styled.button`
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+`;
