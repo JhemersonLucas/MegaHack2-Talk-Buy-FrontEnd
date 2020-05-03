@@ -10,7 +10,6 @@ import * as S from './styles';
 const Start: React.FC = () => {
   const [recorder, setRecorder] = useState(Object);
   const [isRecording, setRecording] = useState(false);
-  const [search, setSearch] = useState('');
   const history = useHistory();
 
   const startRecord = async (): Promise<void> => {
@@ -35,7 +34,6 @@ const Start: React.FC = () => {
       formData.append('file', recorder.getBlob());
       const { data } = await api.post('/chatbot', formData);
       const speech = data.results[0].alternatives[0].transcript;
-      setSearch(speech);
       history.push({ pathname: '/results', search: `?speech=${speech}` });
       setRecording(false);
     });
@@ -56,13 +54,6 @@ const Start: React.FC = () => {
       </S.TitleContainer>
       <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
       <MicrophoneButton onClick={() => handleRecord()} />
-      {search ? (
-        <S.SearchContainer>
-          {'Buscando por: '}
-          {search}
-          ...
-        </S.SearchContainer>
-      ) : null}
     </>
   );
 };

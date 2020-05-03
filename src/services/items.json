@@ -13,13 +13,15 @@
           "4K",
           "UHD"
         ],
-        "link": "https://store.sony.com.br/xbr-65a9g/p"
+        "link": "https://store.sony.com.br/xbr-65a9g/p",
+        "imagem": "https://brsonyb2c.vteximg.com.br/arquivos/ids/221309-1000-715/A9G.jpg?v=637087436225000000"
       },
       {
         "modelo": "KDL-50W665F",
         "marca": "Sony",
         "caracteristicas": ["LED", "Full HD", "HDR", "Smart"],
-        "link": "https://store.sony.com.br/kdl-50w665f/p"
+        "link": "https://store.sony.com.br/kdl-50w665f/p",
+        "imagem": "https://brsonyb2c.vteximg.com.br/arquivos/ids/221335-510-365/W665F.jpg?v=637087524559170000"
       }
     ]
   },
@@ -30,13 +32,15 @@
         "modelo": "WH-XB900N",
         "marca": "Sony",
         "caracteristicas": ["Cancelamento de ruido", "Sem fio", "Azul"],
-        "link": "https://store.sony.com.br/wh-xb900n/p"
+        "link": "https://store.sony.com.br/wh-xb900n/p",
+        "imagem": "https://brsonyb2c.vteximg.com.br/arquivos/ids/221792-1000-715/xb900p.jpg?v=637142828739370000"
       },
       {
         "modelo": "WI-SP500",
         "marca": "Sony",
         "caracteristicas": ["Esportivo", "intra auricular"],
-        "link": "https://store.sony.com.br/wi-sp500/p"
+        "link": "https://store.sony.com.br/wi-sp500/p",
+        "imagem": "https://brsonyb2c.vteximg.com.br/arquivos/ids/211291-1000-715/sony-fone-de-ouvido-intra-auricular-bluetooth-esportivo-wi-sp500-preto-diagonal-1.jpg?v=636755675784600000"
       }
     ]
   }
