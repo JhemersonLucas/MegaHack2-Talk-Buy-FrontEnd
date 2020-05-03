@@ -8,8 +8,8 @@ const Header: React.FC = () => {
   return (
     <S.Container>
       <S.Content>
-        <img src={logoImg} width={100} />
-        <img src={sacolaImg} />
+        <img src={logoImg} width={100} alt="Logo" />
+        <img src={sacolaImg} alt="Carrinho de compras" />
       </S.Content>
     </S.Container>
   );
