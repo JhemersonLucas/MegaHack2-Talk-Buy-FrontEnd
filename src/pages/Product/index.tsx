@@ -19,7 +19,6 @@ const productInfo = {
 const Product: React.FC = () => {
   return (
     <S.Container>
-      <Header />
       <S.Content>
         <button>
           <FiChevronLeft />
