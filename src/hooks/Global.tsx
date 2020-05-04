@@ -9,12 +9,14 @@ import api from '../services/api';
 interface GlobalData {
   addResults(products: Product[]): void;
   products: Product[];
-  addProduct(index: number): void;
   startRecord(): void;
   stopRecord(): void;
   noResult: boolean;
   texto?: string;
   isRecording: boolean;
+  addCart(product: Product): void;
+  remCart(id: string): void;
+  productsCart: Product[];
 }
 
 export interface Product {
@@ -28,8 +30,14 @@ export interface Product {
 const GlobalContext = createContext<GlobalData>({} as GlobalData);
 
 export const GlobalProvider: React.FC = ({ children }) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [indexProduct, setIndexProduct] = useState(0);
+  const [products, setProducts] = useState<Product[]>(() => {
+    const p = localStorage.getItem('@MegaHack-results');
+    return p ? JSON.parse(p) : ([] as Product[]);
+  });
+  const [productsCart, setProductsCart] = useState<Product[]>(() => {
+    const p = localStorage.getItem('@MegaHack-cart');
+    return p ? JSON.parse(p) : ([] as Product[]);
+  });
   // audio
 
   const [recorder, setRecorder] = useState(Object);
@@ -89,23 +97,42 @@ export const GlobalProvider: React.FC = ({ children }) => {
   const addResults = useCallback((listResults: Product[]) => {
     setProducts(listResults);
     console.log(`Salvo ${listResults.length} produtos`);
+    localStorage.setItem('@MegaHack-results', JSON.stringify(listResults));
   }, []);
 
-  const addProduct = useCallback((index: number) => {
-    setIndexProduct(index);
-  }, []);
+  const addCart = useCallback(
+    (product: Product) => {
+      setProductsCart([...productsCart, product]);
+      localStorage.setItem(
+        '@MegaHack-cart',
+        JSON.stringify([...productsCart, product]),
+      );
+    },
+    [productsCart],
+  );
+
+  const remCart = useCallback(
+    (id: string) => {
+      const restante = productsCart.filter(product => product.id !== id);
+      setProductsCart(restante);
+      localStorage.setItem('@MegaHack-cart', JSON.stringify(restante));
+    },
+    [productsCart],
+  );
 
   return (
     <GlobalContext.Provider
       value={{
         products,
         addResults,
-        addProduct,
         startRecord,
         stopRecord,
         noResult,
         texto,
         isRecording,
+        addCart,
+        remCart,
+        productsCart,
       }}
     >
       {children}

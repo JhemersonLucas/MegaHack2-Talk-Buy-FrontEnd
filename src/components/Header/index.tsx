@@ -13,7 +13,9 @@ const Header: React.FC = () => {
         <Link to="/">
           <img src={logoImg} width={100} alt="Logo" />
         </Link>
-        <img src={sacolaImg} alt="Carrinho de compras" />
+        <Link to="/cart">
+          <img src={sacolaImg} alt="Carrinho de compras" />
+        </Link>
       </S.Content>
     </S.Container>
   );

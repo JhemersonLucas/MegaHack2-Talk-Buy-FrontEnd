@@ -60,7 +60,8 @@ const Results: React.FC = () => {
                 history.push({
                   pathname: '/product',
                   search: `?pid=${index}`,
-                })}
+                })
+              }
               key={item.id}
             >
               <ListItem

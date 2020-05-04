@@ -71,6 +71,16 @@ const Product: React.FC = () => {
     if (prev) setIndex(state => Number(state) - 1);
   }, [prev]);
 
+  const comprar = () => {
+    toast.addToast({
+      title: 'Itens adicionado!',
+      type: 'success',
+      description: 'Item separado, prontinho pra te enviar ;)',
+    });
+    global.addCart(products[index]);
+    history.push({ pathname: '/cart' });
+  };
+
   return (
     <S.Container>
       <S.Content>
@@ -85,7 +95,7 @@ const Product: React.FC = () => {
               R$
               <span>{products[index].price}</span>
             </span>
-            <Button>EU QUERO!</Button>
+            <Button onClick={comprar}>EU QUERO!</Button>
             <section>{products[index].description}</section>
           </S.SingleProduct>
         )}
