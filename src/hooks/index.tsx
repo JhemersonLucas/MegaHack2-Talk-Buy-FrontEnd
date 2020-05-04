@@ -1,8 +1,11 @@
 import React from 'react';
 import { ToastProvider } from './Toast';
+import { GlobalProvider } from './Global';
 
 const AppProvider: React.FC = ({ children }) => (
-  <ToastProvider>{children}</ToastProvider>
+  <GlobalProvider>
+    <ToastProvider>{children}</ToastProvider>
+  </GlobalProvider>
 );
 
 export default AppProvider;

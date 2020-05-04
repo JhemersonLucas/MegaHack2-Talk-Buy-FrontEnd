@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.main`
   height: 100vh;
   width: 100%;
-  background: linear-gradient(#ff3e03, #f61a58);
+  background: #fff;
   display: flex;
   justify-items: center;
   align-items: center;
@@ -19,6 +19,8 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 15px;
+  border: 0px solid #666;
+  position: relative;
 
   button {
     border: 0;
@@ -31,9 +33,21 @@ export const Content = styled.div`
       font-size: 20px;
     }
   }
+
+  > a {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: 0;
+    color: #343434;
+  }
 `;
 
 export const SingleProduct = styled.div`
+  border: 0px solid #666;
   background: #fff;
   border-radius: 10px;
   padding: 20px 10px;
@@ -108,5 +122,17 @@ export const Img = styled.div<ImgProps>`
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+    `}
+`;
+
+interface ButtonProps {
+  active: boolean;
+}
+export const Button = styled.button<ButtonProps>`
+  ${props =>
+    !props.active &&
+    css`
+      opacity: 0.3;
+      cursor: not-allowed;
     `}
 `;

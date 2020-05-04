@@ -9,11 +9,12 @@ export const findByItemName = (name: string): Item[] => {
   const typedItems = Object.assign(items, item);
   const resultsName = typedItems.filter(
     itemMap =>
-      removeAccent(itemMap.nome.toUpperCase()) ===
-      removeAccent(normalizedName.toUpperCase()),
+      removeAccent(itemMap.title.toUpperCase()).indexOf(
+        normalizedName.toUpperCase(),
+      ) > -1,
   );
   const resultsCaracteristicas = typedItems.filter(itemMap =>
-    itemMap.caracteristicas.some(
+    itemMap.features.some(
       caracteristica =>
         removeAccent(caracteristica).toUpperCase() ===
         normalizedName.toUpperCase(),
@@ -26,7 +27,7 @@ export const findByItemName = (name: string): Item[] => {
   );
   const resultsModel = typedItems.filter(
     itemMap =>
-      removeAccent(itemMap.modelo.toUpperCase()) ===
+      removeAccent(itemMap.model.toUpperCase()) ===
       removeAccent(normalizedName.toUpperCase()),
   );
   const results = [

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FiChevronRight } from 'react-icons/fi';
+
 import * as S from './styled';
 
 interface PropsListItem {
@@ -18,6 +20,7 @@ const ListItem: React.FC<PropsListItem> = ({ image, name, price }) => (
         <S.ItemPrice>{price}</S.ItemPrice>
       </S.ItemPriceContainer>
     </S.ItemDetail>
+    <FiChevronRight size={20} />
   </S.ListItem>
 );
 

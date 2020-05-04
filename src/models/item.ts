@@ -1,9 +1,11 @@
 export interface Item {
-  nome: string;
-  modelo: string;
+  id: string;
+  title: string;
+  model: string;
   marca: string;
-  caracteristicas: string[];
+  features: string[];
   link: string;
-  imagem: string;
-  preco: string;
+  image: string;
+  price: string;
+  description?: string;
 }

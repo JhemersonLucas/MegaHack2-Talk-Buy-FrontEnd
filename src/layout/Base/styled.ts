@@ -8,12 +8,12 @@ export const Container = styled.main`
   justify-items: center;
   align-items: center;
   flex-direction: column;
+  overflow: auto;
 `;
 
 export const Content = styled.div`
   width: 100%;
   height: 100vh;
-  max-width: 700px;
   display: flex;
   flex-direction: column;
   justify-items: center;
