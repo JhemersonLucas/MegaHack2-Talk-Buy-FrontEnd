@@ -16,19 +16,22 @@ export const findByItemName = (name: string): Item[] => {
   const resultsCaracteristicas = typedItems.filter(itemMap =>
     itemMap.features.some(
       caracteristica =>
-        removeAccent(caracteristica).toUpperCase() ===
-        normalizedName.toUpperCase(),
+        removeAccent(caracteristica)
+          .toUpperCase()
+          .indexOf(normalizedName.toUpperCase()) > -1,
     ),
   );
   const resultsBrand = typedItems.filter(
     itemMap =>
-      removeAccent(itemMap.marca.toUpperCase()) ===
-      removeAccent(normalizedName.toUpperCase()),
+      removeAccent(itemMap.marca.toUpperCase()).indexOf(
+        removeAccent(normalizedName.toUpperCase()),
+      ) > -1,
   );
   const resultsModel = typedItems.filter(
     itemMap =>
-      removeAccent(itemMap.model.toUpperCase()) ===
-      removeAccent(normalizedName.toUpperCase()),
+      removeAccent(itemMap.model.toUpperCase()).indexOf(
+        removeAccent(normalizedName.toUpperCase()),
+      ) > -1,
   );
   const results = [
     ...resultsName,

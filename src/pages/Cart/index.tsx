@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import querystring from 'querystring';
 
 import { FiTrash } from 'react-icons/fi';
@@ -46,15 +46,19 @@ const Product: React.FC = () => {
           </S.SingleProduct>
         ))}
 
+        {products.length > 0 ? (
+          <Button onClick={() => history.push({ pathname: '/checkout' })}>
+            Quero finalizar as compras
+          </Button>
+        ) : null}
+
         {products.length === 0 && (
           <div>
             <button onClick={() => history.push({ pathname: '/' })}>
               <MdRemoveShoppingCart size={30} />
               Seu carrinho está vazio :(
-              <br />
-{' '}
-Clique aqui para realizar uma pesquisa.
-</button>
+              <br /> Clique aqui para realizar uma pesquisa.
+            </button>
           </div>
         )}
       </S.Content>
