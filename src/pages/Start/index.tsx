@@ -5,6 +5,7 @@ import { useGlobal } from '../../hooks/Global';
 
 import MicrophoneButton from '../../components/MicrophoneButton';
 import * as S from './styles';
+import api from '../../services/api';
 
 const Start: React.FC = () => {
   const [noResult, setNoResult] = useState(false);
@@ -21,6 +22,7 @@ const Start: React.FC = () => {
         pathname: '/results',
         search: `?speech=${termoPesquisa}`,
       });
+    api.get('chatbot');
   }, [termoPesquisa, isRecording]);
 
   return (

@@ -32,7 +32,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled(animated.div)`
-  width: 360px;
+  max-width: 360px;
   position: relative;
   padding: 16px 30px 16px 16px;
   border-radius: 10px;
