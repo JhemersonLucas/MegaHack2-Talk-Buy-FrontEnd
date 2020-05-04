@@ -30,6 +30,16 @@ export const Container = styled.div`
     svg {
       margin-right: 10px;
     }
+
+    button {
+      background: transparent;
+      border: 0px;
+      height: 100%;
+      width: 50px;
+      padding-left: 15px;
+      position: relative;
+      right: -15px;
+    }
   }
 `;
 

@@ -49,9 +49,9 @@ export const SearchContainer = styled.div`
 `;
 
 export const NoResult = styled.span`
-  margin-top: 30px;
   font-size: 1.5em;
   font-weight: 100;
-  max-width: 80vw;
+  max-width: 700px;
+  margin: 30px 50px;
   text-align: center;
 `;
