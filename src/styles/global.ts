@@ -51,4 +51,7 @@ export default createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  button {
+    font-family: 'Montserrat', sans-serif;
+  }
 `;

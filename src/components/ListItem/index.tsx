@@ -2,17 +2,20 @@ import React from 'react';
 
 import * as S from './styled';
 
-const ListItem: React.FC = () => (
+interface PropsListItem {
+  image: string;
+  name: string;
+  price: string;
+}
+
+const ListItem: React.FC<PropsListItem> = ({ image, name, price }) => (
   <S.ListItem>
-    <S.ItemImage
-      src="https://brsonyb2c.vteximg.com.br/arquivos/ids/221335-510-365/W665F.jpg?v=637087524559170000"
-      alt="Produto"
-    />
+    <S.ItemImage src={image} alt="Produto" />
     <S.ItemDetail>
-      <S.ItemName>TV Sony</S.ItemName>
+      <S.ItemName>{name}</S.ItemName>
       <S.ItemPriceContainer>
         <S.ItemPriceSymbol>R$</S.ItemPriceSymbol>
-        <S.ItemPrice>4990,00</S.ItemPrice>
+        <S.ItemPrice>{price}</S.ItemPrice>
       </S.ItemPriceContainer>
     </S.ItemDetail>
   </S.ListItem>
