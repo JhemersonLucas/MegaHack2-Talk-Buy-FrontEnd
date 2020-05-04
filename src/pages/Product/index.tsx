@@ -85,7 +85,9 @@ const Product: React.FC = () => {
               R$
               <span>{products[index].price}</span>
             </span>
-            <Button>EU QUERO!</Button>
+            <Link to="/checkout">
+              <Button>EU QUERO!</Button>
+            </Link>
             <section>{products[index].description}</section>
           </S.SingleProduct>
         )}
