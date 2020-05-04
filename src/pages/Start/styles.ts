@@ -24,3 +24,11 @@ export const SearchContainer = styled.div`
   margin-top: 40px;
   font-size: 1.5em;
 `;
+
+export const NoResult = styled.span`
+  margin-top: 30px;
+  font-size: 1.5em;
+  font-weight: 100;
+  max-width: 80vw;
+  text-align: center;
+`;

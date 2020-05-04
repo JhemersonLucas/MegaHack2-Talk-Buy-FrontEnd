@@ -10,15 +10,16 @@ import * as S from './styles';
 const Start: React.FC = () => {
   const [recorder, setRecorder] = useState(Object);
   const [isRecording, setRecording] = useState(false);
-  const [search, setSearch] = useState('');
+  const [stream, setStream] = useState<MediaStream>(new MediaStream());
+  const [noResult, setNoResult] = useState(false);
   const history = useHistory();
 
   const startRecord = async (): Promise<void> => {
-    const stream = await navigator.mediaDevices.getUserMedia({
+    const tempStream = await navigator.mediaDevices.getUserMedia({
       video: false,
       audio: true,
     });
-    const tempRecorder = RecordRTC(stream, {
+    const tempRecorder = RecordRTC(tempStream, {
       type: 'audio',
       mimeType: 'audio/wav',
       recorderType: RecordRTC.StereoAudioRecorder,
@@ -27,6 +28,7 @@ const Start: React.FC = () => {
     tempRecorder.startRecording();
     setRecorder(tempRecorder);
     setRecording(true);
+    setStream(tempStream);
   };
 
   const stopRecord = (): void => {
@@ -34,10 +36,17 @@ const Start: React.FC = () => {
       const formData = new FormData();
       formData.append('file', recorder.getBlob());
       const { data } = await api.post('/chatbot', formData);
-      const speech = data.results[0].alternatives[0].transcript;
-      setSearch(speech);
-      history.push({ pathname: '/results', search: `?speech=${speech}` });
+      const speech = data?.results[0]?.alternatives[0]?.transcript;
+
+      console.log(speech);
+      if (speech) {
+        history.push({ pathname: '/results', search: `?speech=${speech}` });
+      } else {
+        setNoResult(true);
+      }
+
       setRecording(false);
+      stream.getAudioTracks().forEach(track => track.stop());
     });
   };
 
@@ -56,12 +65,10 @@ const Start: React.FC = () => {
       </S.TitleContainer>
       <S.SubtitleContainer>O que vamos comprar hoje?</S.SubtitleContainer>
       <MicrophoneButton onClick={() => handleRecord()} />
-      {search ? (
-        <S.SearchContainer>
-          {'Buscando por: '}
-          {search}
-          ...
-        </S.SearchContainer>
+      {noResult ? (
+        <S.NoResult>
+          Desculpa, mas não conseguimos entender! Tenta mais uma vez, por favor?
+        </S.NoResult>
       ) : null}
     </>
   );

@@ -1,6 +1,9 @@
-import { Produto } from './produto';
-
 export interface Item {
   nome: string;
-  produtos: Produto[];
+  modelo: string;
+  marca: string;
+  caracteristicas: string[];
+  link: string;
+  imagem: string;
+  preco: string;
 }
