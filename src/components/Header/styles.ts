@@ -23,4 +23,12 @@ export const Content = styled.header`
   img {
     max-height: 50px;
   }
+
+  > div {
+    > button {
+      > svg {
+        margin-right: 15px;
+      }
+    }
+  }
 `;

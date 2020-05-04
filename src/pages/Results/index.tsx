@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useLocation, NavLink, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import querystring from 'querystring';
 import { FiSearch } from 'react-icons/fi';
 import { FaMicrophone } from 'react-icons/fa';
@@ -20,25 +20,35 @@ const Results: React.FC = () => {
   const [noResults, setNoResults] = useState(false);
 
   const history = useHistory();
-  const global = useGlobal();
+  const global_ = useGlobal();
+
+  const no = global_.noResult;
+  const termoPesquisa = global_.texto;
+  const { isRecording } = global_;
 
   useEffect(() => {
     const result = findByItemName(String(speech));
     if (result && result.length > 0) {
       setItems(result);
-      global.addResults(result);
+      global_.addResults(result);
       setNoResults(false);
     } else {
       setNoResults(true);
     }
   }, [speech]);
 
+  useEffect(() => {
+    if (termoPesquisa && !isRecording) setSpeech(termoPesquisa);
+  }, [termoPesquisa, isRecording]);
+
   return (
     <S.Container>
       <header>
         <FiSearch />
         <input onChange={str => setSpeech(str.target.value)} value={speech} />
-        <FaMicrophone />
+        <button onClick={() => global_.startRecord()}>
+          <FaMicrophone />
+        </button>
       </header>
       <S.ListContainer>
         {noResults ? (

@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 export const Container = styled.main`
   height: 100vh;
   width: 100%;
-  background: #fff;
   display: flex;
   justify-items: center;
   align-items: center;
@@ -15,8 +14,8 @@ export const Content = styled.div`
   height: 100vh;
   max-width: 700px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   padding: 30px 15px;
   border: 0px solid #666;
   position: relative;
@@ -51,17 +50,22 @@ export const SingleProduct = styled.div`
   border-radius: 10px;
   padding: 20px 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  max-width: 300px;
+  max-width: 700px;
   width: 100%;
   overflow: hidden;
   position: relative;
+
+  & + div {
+    margin-top: 20px;
+  }
 
   h2 {
     color: #666;
     font-weight: 700;
     text-align: left;
+    font-size: 24px;
   }
 
   h3 {
@@ -81,17 +85,20 @@ export const SingleProduct = styled.div`
     border: 2px solid #ccc;
   }
 
-  > span {
-    color: #343434;
-    text-align: center;
-    background: #fff;
-    padding: 3px 5px;
-    border-right: 0px solid #e6e6e6;
-
+  div {
+    flex: 1;
     > span {
-      font-size: 25px;
-      font-weight: 700;
-      margin-left: 5px;
+      color: #343434;
+      text-align: center;
+      background: #fff;
+      padding: 3px 5px;
+      border-right: 0px solid #e6e6e6;
+
+      > span {
+        font-size: 25px;
+        font-weight: 700;
+        margin-left: 5px;
+      }
     }
   }
 
@@ -100,7 +107,18 @@ export const SingleProduct = styled.div`
     color: #666;
     text-align: justify;
     margin-top: 15px;
+    margin-right: 20px;
     line-height: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+
+    > button {
+      background: #d62828;
+      color: #fff;
+    }
   }
 `;
 
@@ -128,12 +146,25 @@ interface ButtonProps {
   active: boolean;
 }
 export const Button = styled.button<ButtonProps>`
-  height: 50px;
-  margin-top: 200px;
   ${props =>
     !props.active &&
     css`
       opacity: 0.3;
       cursor: not-allowed;
     `}
+`;
+
+export const SubtitleContainer = styled.div`
+  font-size: 2em;
+  font-weight: 100;
+  margin: 30px 50px;
+  text-align: center;
+
+  @media (max-width: 670px) {
+    font-size: 1.6em;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.2em;
+  }
 `;
