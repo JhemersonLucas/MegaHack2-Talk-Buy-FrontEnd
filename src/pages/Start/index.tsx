@@ -59,7 +59,7 @@ const Start: React.FC = () => {
   };
 
   return (
-    <>
+    <S.Container>
       <S.TitleContainer>
         Bem vindo a nova experiência em compras online.
       </S.TitleContainer>
@@ -70,7 +70,7 @@ const Start: React.FC = () => {
           Desculpa, mas não conseguimos entender! Tenta mais uma vez, por favor?
         </S.NoResult>
       ) : null}
-    </>
+    </S.Container>
   );
 };
 

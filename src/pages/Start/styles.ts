@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  max-width: 700px;
+`;
+
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -9,14 +17,29 @@ export const TitleContainer = styled.div`
   font-weight: 300;
   text-align: center;
   padding: 20px;
+
+  @media (max-width: 670px) {
+    font-size: 2em;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.5em;
+  }
 `;
 
 export const SubtitleContainer = styled.div`
-  margin-top: 30px;
   font-size: 2em;
   font-weight: 100;
-  max-width: 80vw;
+  margin: 30px 50px;
   text-align: center;
+
+  @media (max-width: 670px) {
+    font-size: 1.6em;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.2em;
+  }
 `;
 
 export const SearchContainer = styled.div`
