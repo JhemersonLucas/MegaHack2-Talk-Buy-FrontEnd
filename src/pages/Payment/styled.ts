@@ -16,7 +16,7 @@ export const Title = styled.span`
 
 export const ImageContainer = styled.div`
   margin-top: 50px;
-  width: 50%;
+  max-width: 30%;
   padding: 40px;
   border: 5px solid rgba(0, 0, 0, 0.5);
 `;
