@@ -4,6 +4,8 @@ import RecordRTC from 'recordrtc';
 import { useHistory } from 'react-router-dom';
 import BoxSpeech from '../components/BoxSpeech';
 
+import { useToast } from './Toast';
+
 import api from '../services/api';
 
 interface GlobalData {
@@ -30,6 +32,8 @@ export interface Product {
 const GlobalContext = createContext<GlobalData>({} as GlobalData);
 
 export const GlobalProvider: React.FC = ({ children }) => {
+  const toast = useToast();
+
   const [products, setProducts] = useState<Product[]>(() => {
     const p = localStorage.getItem('@MegaHack-results');
     return p ? JSON.parse(p) : ([] as Product[]);
@@ -65,26 +69,35 @@ export const GlobalProvider: React.FC = ({ children }) => {
   };
 
   const stopRecord = (): void => {
-    recorder.stopRecording(async () => {
-      const formData = new FormData();
-      formData.append('file', recorder.getBlob());
-      const { data } = await api.post('/chatbot', formData);
-      const speech = data?.results[0]?.alternatives[0]?.transcript;
+    try {
+      recorder.stopRecording(async () => {
+        const formData = new FormData();
+        formData.append('file', recorder.getBlob());
+        const { data } = await api.post('/chatbot', formData);
+        const speech = data?.results[0]?.alternatives[0]?.transcript;
 
-      console.log(speech);
-      if (speech) {
-        setTexto(speech);
-        setTimeout(() => {
+        console.log(speech);
+        if (speech) {
+          setTexto(speech);
+          setTimeout(() => {
+            setRecording(false);
+            setNoResult(false);
+          }, 1500);
+        } else {
+          setNoResult(true);
           setRecording(false);
-          setNoResult(false);
-        }, 1500);
-      } else {
-        setNoResult(true);
-        setRecording(false);
-      }
+        }
 
-      stream.getAudioTracks().forEach(track => track.stop());
-    });
+        stream.getAudioTracks().forEach(track => track.stop());
+      });
+    } catch (err) {
+      console.log(err);
+      toast.addToast({
+        title: 'Ops :(',
+        type: 'error',
+        description: 'Nós precisamos que vc tente novamente',
+      });
+    }
   };
 
   const handleRecord = (): void => {

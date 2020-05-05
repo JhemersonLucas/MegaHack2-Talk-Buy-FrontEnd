@@ -84,7 +84,7 @@ export const EmptyList = styled.span`
   margin-top: 50px;
 `;
 
-export const BackButton = styled(Link)`
+export const BackButton = styled.button`
   margin: 50px;
   background-color: #fff;
   color: #666;

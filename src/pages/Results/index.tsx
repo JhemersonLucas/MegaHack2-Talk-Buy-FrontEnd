@@ -52,7 +52,12 @@ const Results: React.FC = () => {
       </header>
       <S.ListContainer>
         {noResults ? (
-          <NoResultComponent />
+          <>
+            <S.EmptyList>Nenhum item encontrado! :(</S.EmptyList>
+            <S.BackButton onClick={() => global_.startRecord()}>
+              Tentar novamente
+            </S.BackButton>
+          </>
         ) : (
           items.map((item, index) => (
             <button
@@ -60,8 +65,7 @@ const Results: React.FC = () => {
                 history.push({
                   pathname: '/product',
                   search: `?pid=${index}`,
-                })
-              }
+                })}
               key={item.id}
             >
               <ListItem
@@ -76,12 +80,5 @@ const Results: React.FC = () => {
     </S.Container>
   );
 };
-
-const NoResultComponent: React.FC = () => (
-  <>
-    <S.EmptyList>Nenhum item encontrado! :(</S.EmptyList>
-    <S.BackButton to="/">Tentar novamente</S.BackButton>
-  </>
-);
 
 export default Results;
