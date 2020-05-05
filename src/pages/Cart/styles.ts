@@ -157,7 +157,7 @@ export const Button = styled.button<ButtonProps>`
 
 export const SubtitleContainer = styled.div`
   font-size: 2em;
-  font-weight: 100;
+  font-weight: 600;
   margin: 30px 50px;
   text-align: center;
 
