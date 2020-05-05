@@ -1,29 +1,29 @@
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
-import RGBack from '../../assets/rg-verso.png';
+import CreditCard from '../../assets/cartao-credito.png';
 
 import * as S from './styled';
 import Button from '../../components/Button';
 
-const Register: React.FC = () => {
+const Payment: React.FC = () => {
   const history = useHistory();
 
   const nextStep = (): void => {
-    history.push('confirm-data');
+    history.push('confirm-payment');
   };
 
   return (
     <S.Container>
       <S.Title>
-        Encaixe o verso do seu RG no limite indicado para leitura dos dados
+        Encaixe cartão de crédito no limite indicado para leitura dos dados
       </S.Title>
       <S.ImageContainer>
-        <S.Image src={RGBack} />
+        <S.Image src={CreditCard} />
       </S.ImageContainer>
       <Button onClick={() => nextStep()}>Próximo passo</Button>
     </S.Container>
   );
 };
 
-export default Register;
+export default Payment;
