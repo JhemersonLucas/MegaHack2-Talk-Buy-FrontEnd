@@ -17,7 +17,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 15px;
+  padding: 20px 15px;
   border: 0px solid #666;
   position: relative;
 
