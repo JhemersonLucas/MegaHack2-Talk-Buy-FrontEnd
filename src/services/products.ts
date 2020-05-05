@@ -33,13 +33,13 @@ export const findByItemName = (name: string): Item[] => {
         removeAccent(normalizedName.toUpperCase()),
       ) > -1,
   );
-  const results = [
+  const results = new Set([
     ...resultsName,
     ...resultsCaracteristicas,
     ...resultsBrand,
     ...resultsModel,
-  ];
+  ]);
 
   console.log(`Itens encontrados na busca: ${results}`);
-  return results;
+  return Array.from(results);
 };

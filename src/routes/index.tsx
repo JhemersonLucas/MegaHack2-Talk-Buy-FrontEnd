@@ -9,6 +9,7 @@ import Product from '../pages/Product';
 import Checkout from '../pages/Checkout';
 import Login from '../pages/Login';
 import Cart from '../pages/Cart';
+import Register from '../pages/Register';
 // import Import from '../pages/Import';
 
 const Routes: React.FC = () => (
@@ -20,6 +21,7 @@ const Routes: React.FC = () => (
       <Route path="/checkout" exact component={Checkout} />
       <Route path="/login" exact component={Login} />
       <Route path="/cart" exact component={Cart} />
+      <Route path="/register" exact component={Register} />
     </Switch>
   </BaseLayout>
 );
