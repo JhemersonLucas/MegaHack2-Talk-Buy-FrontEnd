@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 80vw;
+  text-align: center;
 `;
 
 export const DataContainer = styled.div`
