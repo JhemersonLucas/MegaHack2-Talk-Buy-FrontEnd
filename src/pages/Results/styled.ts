@@ -26,18 +26,22 @@ export const Container = styled.div`
       border: 0;
       flex: 1;
       background: transparent;
+      min-width: 50px;
     }
 
     svg {
       margin-right: 10px;
+      min-width: 20px;
+      display: block;
     }
 
     button {
       background: transparent;
       border: 0px;
       height: 100%;
-      width: 50px;
-      padding-left: 15px;
+      width: 40px;
+      min-width: 20px;
+      display: block;
       position: relative;
       right: -15px;
     }

@@ -21,7 +21,14 @@ export const Content = styled.header`
   padding: 15px 15px;
 
   img {
-    max-height: 50px;
+    max-height: 40px;
+  }
+
+  #logo {
+    max-height: 60px;
+    position: relative;
+    top: 6px;
+    left: -15px;
   }
 
   > div {
