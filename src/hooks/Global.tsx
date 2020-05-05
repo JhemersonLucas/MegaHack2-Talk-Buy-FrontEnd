@@ -52,21 +52,31 @@ export const GlobalProvider: React.FC = ({ children }) => {
 
   const startRecord = async (): Promise<void> => {
     setTexto(undefined);
-    const tempStream = await navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: true,
-    });
-    const tempRecorder = RecordRTC(tempStream, {
-      type: 'audio',
-      mimeType: 'audio/wav',
-      recorderType: RecordRTC.StereoAudioRecorder,
-      numberOfAudioChannels: 1,
-    });
-    tempRecorder.startRecording();
-    setRecorder(tempRecorder);
-    setRecording(true);
-    setStream(tempStream);
+    try {
+      const tempStream = await navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: true,
+      });
+      const tempRecorder = RecordRTC(tempStream, {
+        type: 'audio',
+        mimeType: 'audio/wav',
+        recorderType: RecordRTC.StereoAudioRecorder,
+        numberOfAudioChannels: 1,
+      });
+      tempRecorder.startRecording();
+      setRecorder(tempRecorder);
+      setRecording(true);
+      setStream(tempStream);
+    } catch (err) {
+      console.log(err);
+      naodeu();
+      setRecording(false);
+    }
   };
+
+  function naodeu() {
+    alert('Ops! seu aparelho não está deixando a gente te escute :(');
+  }
 
   const stopRecord = (): void => {
     try {

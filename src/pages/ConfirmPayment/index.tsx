@@ -15,9 +15,7 @@ const ConfirmPayment: React.FC = () => {
         <S.Data>Validade: 12/29</S.Data>
         <S.Data>Nome: GUSTAVO J FREITAS</S.Data>
       </S.DataContainer>
-      <Button onClick={() => history.push('finish')}>
-        Confirmar e finalizar compra
-      </Button>
+      <Button onClick={() => history.push('finish')}>Tudo certo ;)</Button>
     </S.Container>
   );
 };

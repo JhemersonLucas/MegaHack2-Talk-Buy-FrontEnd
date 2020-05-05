@@ -20,5 +20,6 @@ export const Container = styled.button`
 
   svg {
     float: right;
+    margin-left: 15px;
   }
 `;

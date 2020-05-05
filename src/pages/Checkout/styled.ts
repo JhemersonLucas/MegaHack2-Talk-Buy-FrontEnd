@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   height: 50%;
   margin-top: 50px;
-  max-width: 80%;
+  max-width: 700px;
   text-align: center;
-
-  @media (max-width: 550px) {
-    max-width: 90%;
-  }
+  padding: 0 20px;
 `;
 
 export const Title = styled.span`
@@ -17,11 +14,16 @@ export const Title = styled.span`
   color: #fff;
   line-height: 50px;
   font-weight: 500;
+
+  @media (max-width: 550px) {
+    font-size: 1.5em;
+    line-height: 40px;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
   background-color: #fff;
-  padding: 80px;
+  padding: 40px 20px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
