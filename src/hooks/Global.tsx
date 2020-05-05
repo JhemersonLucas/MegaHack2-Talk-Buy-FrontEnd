@@ -47,6 +47,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
   const [texto, setTexto] = useState(undefined);
 
   const startRecord = async (): Promise<void> => {
+    setTexto(undefined);
     const tempStream = await navigator.mediaDevices.getUserMedia({
       video: false,
       audio: true,

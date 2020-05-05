@@ -11,7 +11,7 @@ const Header: React.FC = () => {
     <S.Container>
       <S.Content>
         <Link to="/">
-          <img src={logoImg} width={100} alt="Logo" />
+          <img src={logoImg} width={120} alt="Logo" />
         </Link>
         <Link to="/cart">
           <img src={sacolaImg} alt="Carrinho de compras" />
